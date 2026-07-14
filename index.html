@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Email Drafter Helper</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><text y=%2250%22 font-size=%2248%22>📧</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background-blobs" aria-hidden="true">
+      <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+    </div>
+
+    <header class="site-header">
+      <a href="#top" class="brand smooth-link" id="top">
+        <span class="logo">📧</span>
+        <div>
+          <h1>AI Email Drafter Helper</h1>
+          <p>Generate professional emails instantly using AI.</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <button id="themeToggle" class="ghost-btn" type="button" aria-label="Toggle dark mode">🌙 Dark</button>
+        <button id="menuToggle" class="ghost-btn hamburger" type="button" aria-label="Toggle menu">☰</button>
+      </div>
+      <nav id="mainNav" class="main-nav">
+        <a class="smooth-link" href="#generator">Generator</a>
+        <a class="smooth-link" href="#features">Features</a>
+        <a class="smooth-link" href="#tips">Tips</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Write Better Emails in Seconds</h2>
+          <p>
+            Draft polished emails for professors, recruiters, teammates, and clients with a smart assistant designed for
+            students and professionals.
+          </p>
+          <a href="#generator" class="cta-btn smooth-link">Start Drafting</a>
+        </div>
+      </section>
+
+      <section id="features" class="feature-grid section-fade">
+        <article class="feature-card">💼<h3>Professional Writing</h3><p>Get clean and structured business-ready drafts.</p></article>
+        <article class="feature-card">⚡<h3>Instant Generation</h3><p>Generate complete emails in seconds with simulated AI.</p></article>
+        <article class="feature-card">🎯<h3>Multiple Tones</h3><p>Switch style from formal to friendly based on context.</p></article>
+        <article class="feature-card">📋<h3>Copy & Download</h3><p>Quickly copy or save your draft as TXT for sharing.</p></article>
+      </section>
+
+      <section class="layout section-slide-up">
+        <aside id="tips" class="glass sidebar">
+          <h3>Email Tips</h3>
+          <ul>
+            <li>Keep subject lines clear and specific.</li>
+            <li>Use short paragraphs for readability.</li>
+            <li>Mention deadlines politely and clearly.</li>
+          </ul>
+          <h4>Examples</h4>
+          <ul>
+            <li>“Request for Internship Opportunity”</li>
+            <li>“Leave Application for 2 Days”</li>
+            <li>“Follow-Up on Meeting Discussion”</li>
+          </ul>
+          <h4>Quick Shortcuts</h4>
+          <ul>
+            <li><kbd>Ctrl</kbd> + <kbd>Enter</kbd> Generate</li>
+            <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> Copy</li>
+          </ul>
+        </aside>
+
+        <section id="generator" class="glass form-wrap">
+          <h3>Email Generator</h3>
+          <form id="emailForm" novalidate>
+            <div class="grid two-col">
+              <label>Recipient Name<input type="text" id="recipientName" required /></label>
+              <label>Recipient Email<input type="email" id="recipientEmail" required /></label>
+            </div>
+
+            <div class="grid two-col">
+              <label
+                >Email Category
+                <select id="emailCategory" required>
+                  <option value="">Select category</option>
+                  <option>Professional</option><option>Academic</option><option>Internship</option><option>Leave Application</option>
+                  <option>Meeting Request</option><option>Follow Up</option><option>Complaint</option><option>Appreciation</option>
+                  <option>Job Application</option><option>General</option>
+                </select>
+              </label>
+              <label>Subject<input type="text" id="subject" placeholder="Auto-generated if left blank" /></label>
+            </div>
+
+            <label>
+              Purpose
+              <textarea id="purpose" rows="4" required placeholder="Explain why you are writing this email..."></textarea>
+              <small id="purposeCounter" class="counter">0 characters</small>
+            </label>
+
+            <div class="grid two-col">
+              <label
+                >Tone
+                <select id="tone" required>
+                  <option value="">Select tone</option>
+                  <option>Professional</option><option>Friendly</option><option>Formal</option><option>Casual</option>
+                  <option>Persuasive</option><option>Polite</option><option>Confident</option>
+                </select>
+              </label>
+              <fieldset>
+                <legend>Email Length</legend>
+                <label><input type="radio" name="length" value="Short" checked /> Short</label>
+                <label><input type="radio" name="length" value="Medium" /> Medium</label>
+                <label><input type="radio" name="length" value="Detailed" /> Detailed</label>
+              </fieldset>
+            </div>
+
+            <label>
+              Additional Instructions
+              <textarea id="instructions" rows="3" placeholder="Keep it concise, use simple English, mention deadline..."></textarea>
+            </label>
+
+            <div class="btn-row">
+              <button type="submit" class="cta-btn">Generate Email</button>
+              <button type="button" id="clearBtn" class="ghost-btn">Clear Form</button>
+              <button type="button" id="copyBtn" class="ghost-btn">Copy Email</button>
+              <button type="button" id="downloadBtn" class="ghost-btn">Download as TXT</button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <section class="glass output section-fade" aria-live="polite">
+        <div class="output-head">
+          <h3>Generated Email</h3>
+          <span id="progressLabel">Ready</span>
+        </div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <div id="loading" class="loading hidden">
+          <span class="spinner"></span>
+          <p id="typingText">AI is thinking...</p>
+          <p id="quote" class="quote"></p>
+        </div>
+        <div id="emailOutput" class="hidden">
+          <p><strong>Generated Subject:</strong> <span id="generatedSubject">-</span></p>
+          <pre id="generatedEmail">Your generated email will appear here...</pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>AI Email Drafter Helper</strong> — Made for College Mini Project</p>
+      <div class="social" aria-label="social links"><span>🌐</span><span>🐙</span><span>💼</span></div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
